@@ -3,7 +3,7 @@
   "builds": [
     { "app": "app/page.tsx", "use": "@vercel/node" }
   ],
-  "routes": [
+  "app": [
     { "app": "/app/(.*)", "dest": "/app/page.tsx" }
   ]
 }
