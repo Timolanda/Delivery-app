@@ -1,6 +1,27 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/app/page.tsx" }
-  ]
+  "buildCommand": "next build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "routes": [
+    {
+      "src": "/dashboard",
+      "dest": "/dashboard"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "https://$VERCEL_URL"
+  }
 }
+
