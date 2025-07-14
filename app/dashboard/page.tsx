@@ -78,7 +78,7 @@ export default function DashboardPage() {
   return (
     <div className="relative min-h-screen bg-background">
       {/* Hamburger for mobile */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+      <div className="md:hidden fixed top-4 right-4 z-50">
         <Button variant="ghost" size="icon" aria-label="Open menu" onClick={() => setSidebarOpen(true)}>
           <Menu className="w-8 h-8 text-primary" />
         </Button>
