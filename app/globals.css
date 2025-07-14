@@ -1,10 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  color: #18181b;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  transition: background 0.3s, color 0.3s;
+}
+
+body {
+  min-height: 100vh;
+  background: none;
+  color: inherit;
+  transition: background 0.3s, color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background: linear-gradient(135deg, #18181b 0%, #312e81 100%);
+    color: #f3f4f6;
+  }
+  body {
+    color: #f3f4f6;
+  }
+}
+
+/* Add smooth transitions for all interactive elements */
+button, a, input, select, textarea, .card, .sidebar, .drawer, .modal {
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card, .sidebar, .drawer, .modal {
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.08), 0 1.5px 6px 0 rgba(0,0,0,0.04);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(8px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card, .sidebar, .drawer, .modal {
+    background: rgba(24,24,27,0.85);
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10);
+  }
+}
+
+.animate-drawer-in {
+  animation: drawerIn 0.35s cubic-bezier(0.32,0.72,0,1);
+}
+@keyframes drawerIn {
+  from { transform: translateY(40px) scale(0.98); opacity: 0.7; }
+  to { transform: none; opacity: 1; }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
 @layer utilities {
   .text-balance {
@@ -90,5 +147,46 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Microinteractions & Animations */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-icon-in {
+    animation: iconIn 0.7s cubic-bezier(0.32,0.72,0,1);
+  }
+  @keyframes iconIn {
+    0% { opacity: 0; transform: translateY(-24px) scale(0.7) rotate(-8deg); }
+    60% { opacity: 1; transform: translateY(4px) scale(1.1) rotate(4deg); }
+    100% { opacity: 1; transform: none; }
+  }
+  .animate-section-fade {
+    animation: sectionFade 0.5s 0.2s both;
+  }
+  @keyframes sectionFade {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  button, .btn {
+    transition: transform 0.15s cubic-bezier(0.32,0.72,0,1), box-shadow 0.15s, background 0.2s, color 0.2s;
+  }
+  button:hover, .btn:hover, button:focus-visible, .btn:focus-visible {
+    transform: scale(1.045);
+    box-shadow: 0 6px 24px 0 rgba(0,0,0,0.10), 0 2px 8px 0 rgba(0,0,0,0.06);
+  }
+  .card, .drawer, .modal {
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover, .drawer:hover, .modal:hover {
+    box-shadow: 0 8px 40px 0 rgba(0,0,0,0.13), 0 3px 12px 0 rgba(0,0,0,0.08);
+    transform: translateY(-2px) scale(1.01);
+  }
+  input, select, textarea {
+    transition: box-shadow 0.18s, border-color 0.18s, transform 0.15s;
+  }
+  input:focus, select:focus, textarea:focus {
+    box-shadow: 0 0 0 2px #6366f1, 0 1.5px 6px 0 rgba(0,0,0,0.04);
+    border-color: #6366f1;
+    transform: scale(1.025);
   }
 }
